@@ -14,7 +14,7 @@ const TodoForm = () => {
         timestamp: serverTimestamp(),
       });
       setTodo({ title: '', detail: '' });
-      alert(`Todo with id: ${docRef.id} has been added successfully`);
+      alert(`Todo with id: ${docRef.id} has been added successfully.`);
     } catch {
       alert('Something went wrong. Please check your network and try again.');
     }
