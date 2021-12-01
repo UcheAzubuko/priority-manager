@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import TodoItem from './TodoItem';
 
 const TodoList = () => {
   const [todos, setTodos] = useState([
@@ -9,10 +10,12 @@ const TodoList = () => {
   return (
     <div>
       {todos.map((todo) => (
-        <div key="todo.id">
-          <h2>{todo.title}</h2>
-          <p>{todo.detail}</p>
-        </div>
+        <TodoItem
+          key={todo.id}
+          title={todo.title}
+          detail={todo.detail}
+          timestamp={todo.timestamp}
+        />
       ))}
     </div>
   );

@@ -3,7 +3,7 @@ import TodoList from '../components/TodoList';
 
 export default function Home() {
   return (
-    <Container>
+    <Container maxWidth="sm">
       <TodoList />
     </Container>
   );
