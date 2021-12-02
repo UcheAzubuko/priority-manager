@@ -4,17 +4,25 @@ import MoreVertIcon from '@mui/icons-material/MoreVert';
 import moment from 'moment';
 import { doc, deleteDoc } from '@firebase/firestore';
 import { db } from '../firebase';
+import { useRouter } from 'next/router';
 
 const TodoItem = ({ id, title, detail, timestamp }) => {
+  const router = useRouter();
+
   const deleteTodo = async (id, e) => {
-    // try {
+    try {
       e.stopPropagation();
       const docRef = doc(db, 'todos', id);
       await deleteDoc(docRef);
       alert(`Todo with id: ${id} is deleted successfully.`);
-    // } catch {
-      // alert('Something went wrong. Please check your network and try again.');
-    // }
+    } catch {
+      alert('Something went wrong. Please check your network and try again.');
+    }
+  };
+
+  const seeMore = (id, e) => {
+    e.stopPropagation();
+    router.push(`/todos/${id}`);
   };
 
   return (
@@ -26,7 +34,7 @@ const TodoItem = ({ id, title, detail, timestamp }) => {
           <IconButton onClick={(e) => deleteTodo(id, e)}>
             <DeleteIcon />
           </IconButton>
-          <IconButton>
+          <IconButton onClick={(e) => seeMore(id, e)}>
             <MoreVertIcon />
           </IconButton>
         </>
