@@ -1,10 +1,12 @@
 import { addDoc, collection, serverTimestamp } from '@firebase/firestore';
 import { Button, TextField } from '@mui/material';
 import { useState } from 'react';
+import { useAuth } from '../AuthProvider';
 import { db } from '../firebase';
 
 const TodoForm = () => {
   const [todo, setTodo] = useState({ title: '', detail: '' });
+  const { currentUser } = useAuth();
 
   const addTodo = async () => {
     try {
@@ -12,6 +14,7 @@ const TodoForm = () => {
       const docRef = await addDoc(collectionRef, {
         ...todo,
         timestamp: serverTimestamp(),
+        email: currentUser.email,
       });
       setTodo({ title: '', detail: '' });
       alert(`Todo with id: ${docRef.id} has been added successfully.`);
