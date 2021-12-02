@@ -6,12 +6,13 @@ import {
   Card,
   CardContent,
   Typography,
+  Link,
   Button,
   CardActions,
 } from '@mui/material';
 import { collection, doc, getDoc, getDocs } from '@firebase/firestore';
 import { db } from '../../firebase';
-import Link from 'next/link';
+// import Link from 'next/link';
 
 const TodoDetail = ({ todoProps }) => {
   const todo = JSON.parse(todoProps);
